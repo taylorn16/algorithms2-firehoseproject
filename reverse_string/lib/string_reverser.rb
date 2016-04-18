@@ -1,6 +1,7 @@
 module StringReverser
 	def self.reverse(input)
-		fail "Not Implemented Error"
+		return nil if input.nil?
+    return input.chars.reverse.join('')
 	end
 
 end
