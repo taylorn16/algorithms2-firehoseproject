@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe LargestPrimeFactor, type: :model do
   describe "LargestPrimeFactor#largest_prime_of" do
-    
+
     it "should result in nil when given nil" do
       number = nil
       find = LargestPrimeFactor.new
