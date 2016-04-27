@@ -1,6 +1,6 @@
 class String
   def rot13
-    # TODO: Implement
+    # %, .ord method
     self
   end
 end

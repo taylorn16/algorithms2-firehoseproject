@@ -1,5 +1,5 @@
 class LargestPrimeFactor
-
+  #sieve of erathosthenes
   def largest_prime_of(number)
     return nil if number.nil?
 
@@ -24,8 +24,6 @@ class LargestPrimeFactor
     (1..number).each do |num|
       factors << num if number % num == 0
     end
-
     return factors
   end
-
 end
