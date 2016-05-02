@@ -3,8 +3,21 @@ module LongestSubsequence
 
 	def self.find(first, second)
     return nil if first.nil? || second.nil?
+    chars = []
 
-    matrix = LongestSubsequence.init_matrix(first.chars. second.chars)
+    matrix = LongestSubsequence.init_matrix(first.chars, second.chars)
+    (2..(matrix.size - 1)).each do |row|
+      (2..(matrix[row].size - 1)).each do |col|
+        chars << matrix[0][col] if LongestSubsequence.check_match(matrix, row, col)
+        matrix[row][col] = LongestSubsequence.calculate_value(matrix, row, col)
+      end
+    end
+
+    if matrix.last.last == 0
+      return nil
+    else
+      return chars.uniq.sort.join("")
+    end
 	end
 
   def self.init_matrix(charr1, charr2)
@@ -29,21 +42,21 @@ module LongestSubsequence
       matrix[i][1] = 0
     end
 
-    return matrix
+    matrix
+  end
+
+  def self.check_match(matrix, row, col)
+    matrix[0][col] == matrix[row][0]
   end
 
   def self.calculate_value(matrix, row, col)
-    if matrix[0][col] == matrix[row][0]
-      value = 1 + [matrix[row][col - 1], matrix[row - 1][col]].max
+    if LongestSubsequence.check_match(matrix, row, col)
+      value = 1 + matrix[row - 1][col - 1]
     else
       value = [matrix[row][col - 1], matrix[row - 1][col]].max
     end
 
-    return value
+    value
   end
 
 end
-
-# Testing
-
-pp LongestSubsequence.init_matrix(['a', 'b', 'c', 'd'], ['a', 'b', 'c'])
