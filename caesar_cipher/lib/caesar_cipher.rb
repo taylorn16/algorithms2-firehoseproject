@@ -16,7 +16,7 @@ class String
       elsif upperCase.include?(char)
         index = upperCase.index(char)
         arr = upperCase
-      elsif char == " "
+      elsif char == " "                               # Check for spaces
         rotated << char
         next
       else
